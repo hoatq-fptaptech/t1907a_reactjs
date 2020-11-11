@@ -30,9 +30,9 @@ export default class Header extends React.Component{
                                             Home
                                         </Link>
                                     </li>
-                                    <li><Link to="/">Store</Link></li>
+                                    <li><Link to="/category">Category</Link></li>
                                     <li className="has-children">
-                                       <Link to="/">Products</Link>
+                                       <Link to="/detail">Products</Link>
                                     </li>
                                     <li><Link to="/">About</Link></li>
                                     <li><Link to="/">Contact</Link></li>

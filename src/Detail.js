@@ -1,9 +1,10 @@
 import React from 'react';
+import Block from "./Block";
 
 export default class Detail extends React.Component{
     render() {
         return (
-            <h1>Detail</h1>
+            <Block/>
         )
     }
 }
