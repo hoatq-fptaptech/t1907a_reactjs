@@ -2,7 +2,11 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 export default class Header extends React.Component{
+    constructor(props) {
+        super(props);
+    }
     render() {
+        const menu = this.props.links;
         return (
             <div className="site-navbar py-2">
                 <div className="search-wrap">
@@ -25,17 +29,12 @@ export default class Header extends React.Component{
                         <div className="main-nav d-none d-lg-block">
                             <nav className="site-navigation text-right text-md-center" role="navigation">
                                 <ul className="site-menu js-clone-nav d-none d-lg-block">
-                                    <li className="active">
-                                        <Link to="/">
-                                            Home
-                                        </Link>
-                                    </li>
-                                    <li><Link to="/category">Category</Link></li>
-                                    <li className="has-children">
-                                       <Link to="/detail">Products</Link>
-                                    </li>
-                                    <li><Link to="/">About</Link></li>
-                                    <li><Link to="/">Contact</Link></li>
+                                    {
+                                        // noi viet js
+                                        menu.map((e,i)=>{
+                                            return <li key={i}><Link to={e.path}>{e.title}</Link></li>
+                                        })
+                                    }
                                 </ul>
                             </nav>
                         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 
 export default class Grid extends React.Component{
     render() {
+        const products = this.props.products;
         return (
             <div className="site-section bg-light">
                 <div className="container">
@@ -13,31 +14,18 @@ export default class Grid extends React.Component{
                     <div className="row">
                         <div className="col-md-12 block-3 products-wrap">
                             <div className="nonloop-block-3">
-                                <div className="text-center item col-md-4 mb-4 item-v2">
-                                    <span className="onsale">Sale</span>
-                                    <a href="shop-single.html"> <img src="images/product_03.png" alt="Image"/></a>
-                                    <h3 className="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                    <p className="price">$120.00</p>
-                                </div>
-
-                                <div className="text-center item col-md-4 mb-4 item-v2">
-                                    <a href="shop-single.html"> <img src="images/product_01.png" alt="Image"/></a>
-                                    <h3 className="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                    <p className="price">$120.00</p>
-                                </div>
-
-                                <div className="text-center item col-md-4 mb-4 item-v2">
-                                    <span className="onsale">Sale</span>
-                                    <a href="shop-single.html"> <img src="images/product_02.png" alt="Image"/></a>
-                                    <h3 className="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                    <p className="price">$120.00</p>
-                                </div>
-
-                                <div className="text-center item col-md-4 mb-4 item-v2">
-                                    <a href="shop-single.html"> <img src="images/product_04.png" alt="Image"/></a>
-                                    <h3 className="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                    <p className="price">$120.00</p>
-                                </div>
+                                {
+                                    products.map((e,i)=>{
+                                        return (
+                                            <div key={i} className="text-center item col-md-4 mb-4 item-v2">
+                                                <span className="onsale">Sale</span>
+                                                <a href="shop-single.html"> <img src={e.image} alt="Image"/></a>
+                                                <h3 className="text-dark"><a href="shop-single.html">{e.name}</a></h3>
+                                                <p className="price">${e.price}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
 
                             </div>
                         </div>
