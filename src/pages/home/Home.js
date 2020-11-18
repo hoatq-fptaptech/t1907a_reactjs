@@ -1,13 +1,15 @@
 import React from 'react';
 import Block from "./Block";
-import Grid from "./Grid";
+import Grid from "../../components/grid/Grid";
 
 export default class Home extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            products:[]
+            products:[],
+            number:0
         }
+        this.changeNumber = this.changeNumber.bind(this);
     }
     componentDidMount() {
         // https://foodgroup.herokuapp.com/api/today-special
@@ -19,9 +21,15 @@ export default class Home extends React.Component{
                 })
             })
     }
-
+    changeNumber(){
+        let n = this.state.number;
+        n++;
+        this.setState({number:n});
+    }
     render() {
         return [
+            <h1>Number:{this.state.number}</h1>,
+            <button onClick={this.changeNumber} type="button">Onclick</button>,
             <Grid key={1} products={this.state.products}/>,
             <Block key={2}/>
         ]

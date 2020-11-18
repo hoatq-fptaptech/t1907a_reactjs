@@ -4,9 +4,22 @@ import {Link} from "react-router-dom";
 export default class Header extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            menu:[]
+        }
     }
+    componentDidMount() {
+        fetch("https://foodgroup.herokuapp.com/api/menu")
+            .then(rs=>rs.json())
+            .then(rs=>{
+                this.setState({
+                    menu: rs.data
+                })
+            })
+    }
+
     render() {
-        const menu = this.props.links;
+        const menu = this.state.menu;
         return (
             <div className="site-navbar py-2">
                 <div className="search-wrap">
@@ -29,12 +42,14 @@ export default class Header extends React.Component{
                         <div className="main-nav d-none d-lg-block">
                             <nav className="site-navigation text-right text-md-center" role="navigation">
                                 <ul className="site-menu js-clone-nav d-none d-lg-block">
+                                    <li><Link to="/">Home</Link></li>
                                     {
                                         // noi viet js
                                         menu.map((e,i)=>{
-                                            return <li key={i}><Link to={e.path}>{e.title}</Link></li>
+                                            return <li key={i}><Link to={"/category/"+e.id}>{e.name}</Link></li>
                                         })
                                     }
+                                    <li><Link to="/login">Login</Link></li>
                                 </ul>
                             </nav>
                         </div>

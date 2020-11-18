@@ -1,5 +1,5 @@
 import React from 'react';
-import Block from "./Block";
+import Block from "../home/Block";
 
 export default class Detail extends React.Component{
     render() {
