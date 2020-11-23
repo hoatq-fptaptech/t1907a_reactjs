@@ -19,6 +19,7 @@ export default class Header extends React.Component{
     }
 
     render() {
+        const user = this.props.user;
         const menu = this.state.menu;
         return (
             <div className="site-navbar py-2">
@@ -49,7 +50,15 @@ export default class Header extends React.Component{
                                             return <li key={i}><Link to={"/category/"+e.id}>{e.name}</Link></li>
                                         })
                                     }
-                                    <li><Link to="/login">Login</Link></li>
+                                    <li>
+                                        {
+                                           user.email !== null?
+                                           <Link to="/">{user.fullname}</Link>
+                                           :
+                                           <Link to="/login">Login</Link>
+                                        }
+
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

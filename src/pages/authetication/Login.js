@@ -4,50 +4,61 @@ export default class Login extends React.Component{
     constructor(props) {
         super(props);
         this.state ={
-            user: {email:"",password:""},
+            email:"",
+            password:"",
+            fullname:"",
             isLogged:false
         }
-        this.changeEmail = this.changeEmail.bind(this);
-        this.changePwd = this.changePwd.bind(this);
-        this.formSubmit = this.formSubmit.bind(this);
+        this.handleChange =  this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    changeEmail(e){
-        const v = e.target.value;
-        const user = this.state.user;
-        user.email = v;
+    handleChange(event){
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
         this.setState({
-            user:user
+            [name]:value
         })
-        //console.log(this.state.user);
     }
-    changePwd(e){
-        const v = e.target.value;
-        const user = this.state.user;
-        user.password = v;
-        this.setState({
-            user:user
-        })
-        //console.log(this.state.user);
-    }
-    formSubmit(){
+
+    handleSubmit(){
+        console.log(this.state.fullname);
+        console.log(this.state.email);
+        console.log(this.state.password);
         // fetch data user gui len api
         // login xong nhan duoc token -> luu token vao cookie/local storage
         // dispatch event cho redux
+
+        // login xong update lai layout
+        const user = {
+            fullname:this.state.fullname,
+            email:this.state.email,
+            token:"abc"
+        }
+        window.localStorage.setItem("user_authetication",JSON.stringify(user));
+       // window.sessionStorage.setItem("user_authetication",user);
+        this.props.onLogged(user);
     }
     render() {
-        const user = this.state.user;
+        const email = this.state.email;
+        const fullname = this.state.fullname;
+        const password = this.state.password;
         return (
             <form>
                 <div className="form-group">
+                    <label>Full Name</label>
+                    <input type="text" onChange={this.handleChange} value={fullname} name="fullname" placeholder="FullName"/>
+                </div>
+                <div className="form-group">
                     <label>Email</label>
-                    <input type="email" onChange={this.changeEmail} value={user.email} name="email" placeholder="Email"/>
+                    <input type="email" onChange={this.handleChange} value={email} name="email" placeholder="Email"/>
                 </div>
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" onChange={this.changePwd} value={user.password} name="password" placeholder="Password"/>
+                    <input type="password" onChange={this.handleChange} value={password} name="password" placeholder="Password"/>
                 </div>
                 <div className="form-group">
-                    <button type="button" onClick={this.formSubmit} className="btn btn-danger">Login</button>
+                    <button type="button" onClick={this.handleSubmit} className="btn btn-danger">Login</button>
                 </div>
             </form>
         )

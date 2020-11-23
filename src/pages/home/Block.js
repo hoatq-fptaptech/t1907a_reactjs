@@ -8,6 +8,7 @@ export default class Block extends React.Component{
                     <div className="row">
                         <div className="col-lg-4">
                             <div className="feature">
+                                <span>Update</span>
                                 <span className="wrap-icon flaticon-24-hours-drugs-delivery" />
                                 <h3><a href="#">Free Delivery</a></h3>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laborum voluptates excepturi neque labore .</p>
