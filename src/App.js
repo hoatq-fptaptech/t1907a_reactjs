@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import Layout from "./pages/Layout";
+import Hook from "./Hook";
 class App extends React.Component{
     constructor(props) {
         super(props);
@@ -11,7 +12,7 @@ class App extends React.Component{
 
     render(){
       return (
-          <Layout/>
+         <Hook number={this.state.count}/>
       );
   }
 }

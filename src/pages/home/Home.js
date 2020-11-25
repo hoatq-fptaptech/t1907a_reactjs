@@ -1,6 +1,8 @@
 import React from 'react';
 import Block from "./Block";
 import Grid from "../../components/grid/Grid";
+import {api,url} from "../../services/Apdapter";
+import {Food} from "../../services/models/Category";
 
 export default class Home extends React.Component{
     constructor(props) {
@@ -11,15 +13,17 @@ export default class Home extends React.Component{
         }
         this.changeNumber = this.changeNumber.bind(this);
     }
-    componentDidMount() {
+    async componentDidMount() {
         // https://foodgroup.herokuapp.com/api/today-special
-        fetch("https://foodgroup.herokuapp.com/api/today-special")
-            .then(rs=>rs.json())
-            .then(rs=>{
-                this.setState({
-                    products: rs.data
-                })
+        const rs = await api.get(url.today_special.url);
+        if(rs.status === 200){
+            const foods = rs.data.data.map(e=>{
+                return new Food(e);
             })
+            this.setState({
+                products: foods
+            })
+        }
     }
     changeNumber(){
         let n = this.state.number;
